@@ -1,0 +1,26 @@
+
+<div data-controller="checkbox-select-all">
+  <input type="checkbox" id="all" name="horns" value="all" data-checkbox-select-all-target="parent", data-action="change->checkbox-select-all#toggleChildren">
+  <label for="horns">Todos</label><br>
+  <input type="checkbox" id="horns" name="horns" data-checkbox-select-all-target="child" data-action="change->checkbox-select-all#toggleParent">
+  <label for="horns">Primeiro</label><br>
+  <input type="checkbox" id="horns" name="horns" data-checkbox-select-all-target="child" data-action="change->checkbox-select-all#toggleParent">
+  <label for="horns">Segundo</label><br>
+  <input type="checkbox" id="horns" name="horns" data-checkbox-select-all-target="child" data-action="change->checkbox-select-all#toggleParent">
+  <label for="horns">Terceiro/label><br>
+</div>
+
+<p style="color: green"><%= notice %></p>
+
+<h1>Users</h1>
+
+<div id="users">
+  <% @users.each do |user| %>
+    <%= render user %>
+    <p>
+      <%= link_to "Show this user", user %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New user", new_user_path %>
