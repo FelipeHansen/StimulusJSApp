@@ -6,6 +6,15 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def preview
+    @preview_user = User.new(user_params)
+    # redirect_to request.url, notice: "#{@preview_user.valid?} #{@preview_user.errors.full_messages}"
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to root_url, notice: "Previewed" }
+    end
+  end
+
   # GET /users/1 or /users/1.json
   def show
   end
@@ -65,6 +74,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.fetch(:user, {}).permit(:name, :email, :password, :soccer_team, :description)
+      params.fetch(:user, {}).permit(:name, :email, :password, :soccer_team, :description, :country)
     end
 end

@@ -1,5 +1,7 @@
 
-<div data-controller="checkbox-select-all">
+<%
+=begin%>
+ <div data-controller="checkbox-select-all">
   <input type="checkbox" id="all" name="horns" value="all" data-checkbox-select-all-target="parent", data-action="change->checkbox-select-all#toggleChildren">
   <label for="horns">Todos</label><br>
   <input type="checkbox" id="horns" name="horns" data-checkbox-select-all-target="child" data-action="change->checkbox-select-all#toggleParent">
@@ -8,19 +10,60 @@
   <label for="horns">Segundo</label><br>
   <input type="checkbox" id="horns" name="horns" data-checkbox-select-all-target="child" data-action="change->checkbox-select-all#toggleParent">
   <label for="horns">Terceiro/label><br>
-</div>
+</div> 
+<%
+=end%>
+
 
 <p style="color: green"><%= notice %></p>
 
-<h1>Users</h1>
-
 <div id="users">
-  <% @users.each do |user| %>
-    <%= render user %>
-    <p>
-      <%= link_to "Show this user", user %>
-    </p>
-  <% end %>
+<div class="flex flex-col">
+  <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+      <div class="overflow-hidden">
+        <table class="min-w-full">
+          <thead class="bg-white border-b">
+            <tr> <h2> Lista de Usuários </h2> </tr>
+            <tr>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                #
+              </th>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                Nome
+              </th>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                País
+              </th>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                Time do coração
+              </th>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                <%= link_to "New user", new_user_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" %>
+              </th>
+            </tr>
+          </thead>
+          <% @users.each do |u|%>
+            <tbody>
+              <tr class="bg-gray-100 border-b">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">1</td>
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                  <%= u.name %>
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                  <%= u.country %>
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                  <%= u.soccer_team %>
+                </td>
+              </tr>
+            </tbody>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 
-<%= link_to "New user", new_user_path %>
+
